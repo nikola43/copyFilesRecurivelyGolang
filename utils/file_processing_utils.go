@@ -71,9 +71,9 @@ func CompressMP4(inFile string, outFile string) error {
 	}
 	return nil
 }
-func CompressImage(inputFilePath, outFilePath string) error {
+func CompressImage(inputFilePath, outFilePath string, quality int) error {
 	options := bimg.Options{
-		Quality: 75,
+		Quality: quality,
 	}
 
 	// open file

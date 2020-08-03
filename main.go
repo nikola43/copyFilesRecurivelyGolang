@@ -75,7 +75,7 @@ func main() {
 				//fmt.Println("Content Type: " + contentType)
 
 				if contentType == "image/jpeg" {
-					err := fileutils.CompressImage(path, t)
+					err := fileutils.CompressImage(path, t, 40)
 					if err != nil {
 						panic(err)
 					}
