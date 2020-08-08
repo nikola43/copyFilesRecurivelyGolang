@@ -84,7 +84,7 @@ func main() {
 					isAudio := strings.Contains(path, "mp3")
 
 					if isAudio {
-						fileutils.CopyFile(path, compressedPath)
+						fileutils.CopyFile(path, t)
 					} else {
 						if isCompressed {
 							fileutils.CopyFile(path, compressedPath)
