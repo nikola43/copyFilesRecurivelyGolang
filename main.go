@@ -60,6 +60,8 @@ func main() {
 		if path != root {
 			var t = path
 			t = strings.Replace(t, rootSlice[len(rootSlice)-1], copyPath1, -1)
+			var compressedPath = t
+
 			if info.IsDir() {
 				directories = append(directories, path)
 				fileutils.MakeDirectory(t)
@@ -75,16 +77,32 @@ func main() {
 				//fmt.Println("Content Type: " + contentType)
 
 				if contentType == "image/jpeg" {
-					err := fileutils.CompressImage(path, t, 40)
-					if err != nil {
-						panic(err)
+
+					isCompressed := strings.Contains(path, "compress")
+					//fmt.Println(isCompressed) // true
+
+					if isCompressed {
+						fileutils.CopyFile(path, compressedPath)
+					} else {
+						err := fileutils.CompressImage(path, t, 40)
+						if err != nil {
+							panic(err)
+						}
 					}
 				} else if contentType == "video/mp4" || contentType == "application/octet-stream" {
-					fmt.Println(path)
-					err := fileutils.CompressMP4(path, t)
-					if err != nil {
-						panic(err)
+					isCompressed := strings.Contains(path, "compress")
+					//fmt.Println(isCompressed) // true
+
+					if isCompressed {
+						fileutils.CopyFile(path, compressedPath)
+					} else {
+						fmt.Println(path)
+						err := fileutils.CompressMP4(path, t)
+						if err != nil {
+							panic(err)
+						}
 					}
+
 				}
 
 				exist := fileutils.FileExists(t)
