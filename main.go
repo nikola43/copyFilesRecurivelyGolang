@@ -112,6 +112,7 @@ func main() {
 					if err != nil {
 						panic(err)
 					}
+					fileutils.RemoveFile(path)
 				}
 			}
 		}
