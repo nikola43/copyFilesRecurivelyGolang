@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 	fileutils "github.com/nikola43/copyFilesRecurivelyGolang/utils"
-	"github.com/schollz/progressbar"
 	"os"
 	"path/filepath"
+
 	"strconv"
 	"strings"
 )
@@ -29,7 +29,7 @@ func main() {
 	root := os.Args[1]
 	outputPath := os.Args[2]
 
-	rootSlice := strings.Split(root, "/")
+	//rootSlice := strings.Split(root, "/")
 	outputPathSlice := strings.Split(outputPath, "/")
 	copyPath := ""
 
@@ -52,17 +52,22 @@ func main() {
 	fileutils.RemoveDirectory(copyPath)
 	fileutils.MakeDirectory(copyPath)
 
+
 	// create and start new bar
 
-	bar := progressbar.Default(int64(len(files)))
+	//bar := progressbar.Default(int64(len(files)))
 	fmt.Printf(WarningColor, "Compressing...")
 	fmt.Println("")
 	var copyPath1 = outputPathSlice[len(outputPathSlice)-1]
 	err := filepath.Walk(root, func(path string, info os.FileInfo, err error) error {
 		if path != root {
 			var t = path
-			t = strings.Replace(t, rootSlice[len(rootSlice)-1], copyPath1, -1)
-			var compressedPath = t
+			t = strings.Replace(t, outputPathSlice[len(outputPathSlice)-1], copyPath1, -1)
+			//var compressedPath = t
+			fmt.Println(t)
+
+
+			/*
 
 			if info.IsDir() {
 				directories = append(directories, path)
@@ -117,12 +122,16 @@ func main() {
 					}
 				}
 			}
+			*/
 		}
+
 		return nil
 	})
+
 	if err != nil {
 		panic(err)
 	}
+
 
 	fmt.Printf(GreenColor, "Success files: "+strconv.Itoa(successCounter))
 }
