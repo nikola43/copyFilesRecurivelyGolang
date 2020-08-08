@@ -21,22 +21,24 @@ const (
 
 func main() {
 	argsWithoutProg := os.Args[1:]
-	if len(argsWithoutProg) != 1 {
-		fmt.Println("Usage: ./compressRecursively 'path/to/input/folder'")
+	if len(argsWithoutProg) != 2 {
+		fmt.Println("Usage: ./compressRecursively 'path/to/input/folder' 'path/to/output/folder'")
 		os.Exit(0)
 	}
 
 	root := os.Args[1]
+	outputPath := os.Args[2]
 
 	rootSlice := strings.Split(root, "/")
+	outputPathSlice := strings.Split(outputPath, "/")
 	copyPath := ""
 
 	var i = 0
-	for i = 0; i < len(rootSlice)-1; i++ {
-		copyPath += rootSlice[i] + "/"
+	for i = 0; i < len(outputPathSlice)-1; i++ {
+		copyPath += outputPathSlice[i] + "/"
 	}
-	copyPath += rootSlice[len(rootSlice)-1]
-	copyPath += "Copy"
+	copyPath += outputPathSlice[len(outputPathSlice)-1]
+	//copyPath += "Copy"
 
 	fmt.Println(copyPath)
 
@@ -55,7 +57,7 @@ func main() {
 	bar := progressbar.Default(int64(len(files)))
 	fmt.Printf(WarningColor, "Compressing...")
 	fmt.Println("")
-	var copyPath1 = rootSlice[len(rootSlice)-1] + "Copy"
+	var copyPath1 = outputPathSlice[len(outputPathSlice)-1]
 	err := filepath.Walk(root, func(path string, info os.FileInfo, err error) error {
 		if path != root {
 			var t = path
@@ -84,7 +86,8 @@ func main() {
 					if isCompressed {
 						fileutils.CopyFile(path, compressedPath)
 					} else {
-						err := fileutils.CompressImage(path, t, 40)
+						fmt.Println(path)
+						err := fileutils.CompressImage(path, t, 50)
 						if err != nil {
 							panic(err)
 						}
