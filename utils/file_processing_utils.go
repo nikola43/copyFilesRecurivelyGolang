@@ -13,6 +13,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"strconv"
+	"time"
 )
 
 func ExecuteCommandVerbose(name string, arg ...string) error {
@@ -94,6 +95,46 @@ func CompressImage(inputFilePath, outFilePath string, quality int) error {
 		return err
 	}
 	return nil
+}
+
+func fileExists(filename string) bool {
+	info, err := os.Stat(filename)
+	if os.IsNotExist(err) {
+		return false
+	}
+	return !info.IsDir()
+}
+
+func WriteLog(message string) {
+	date := fmt.Sprintf(time.Now().Format("2006-01-02"))
+	var f *os.File
+	var err error
+	if fileExists("./logs/" + date + ".txt") {
+		f, err = os.OpenFile("./logs/"+date+".txt", os.O_APPEND|os.O_WRONLY, 0644)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+	} else {
+		f, err = os.Create("./logs/" + date + ".txt")
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+	}
+
+	newLine := message + " | " + fmt.Sprintf(time.Now().Format("2006-01-02 15:04:05"))
+
+	_, err = fmt.Fprintln(f, newLine)
+	if err != nil {
+		fmt.Println(err)
+		err = f.Close()
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		return
+	}
 }
 
 /**
