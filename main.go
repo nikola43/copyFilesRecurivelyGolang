@@ -141,6 +141,7 @@ func main() {
 						panic(err)
 					}
 				}
+				ignore = false
 			}
 		}
 		return nil
