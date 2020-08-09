@@ -120,7 +120,7 @@ func main() {
 					if err != nil {
 						panic(err)
 					}
-					fileutils.RemoveFile(path)
+					//fileutils.RemoveFile(path)
 				}
 			}
 		}
