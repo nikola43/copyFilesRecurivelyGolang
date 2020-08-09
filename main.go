@@ -92,7 +92,7 @@ func main() {
 						} else {
 							err := fileutils.CompressImage(path, t, 50)
 							if err != nil {
-								utils.WriteLog("compress image " + path +" -> "+ err.Error())
+								fileutils.WriteLog("compress image " + path +" -> "+ err.Error())
 							}
 						}
 
