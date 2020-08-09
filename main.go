@@ -89,7 +89,7 @@ func main() {
 						if isCompressed {
 							fileutils.CopyFile(path, compressedPath)
 						} else {
-							err := fileutils.CompressImage(path, t, 40)
+							err := fileutils.CompressImage(path, t, 50)
 							if err != nil {
 								panic(err)
 							}
@@ -108,7 +108,19 @@ func main() {
 								panic(err)
 							}
 						}
+					} else if contentType == "image/png" {
+						isCompressed := strings.Contains(path, "compress")
+						//fmt.Println(isCompressed) // true
 
+						if isCompressed {
+							fileutils.CopyFile(path, compressedPath)
+						} else {
+							fmt.Println(path)
+							err := fileutils.CompressImage(path, t, 50)
+							if err != nil {
+								panic(err)
+							}
+						}
 					}
 				}
 
@@ -119,7 +131,7 @@ func main() {
 					if err != nil {
 						panic(err)
 					}
-					fileutils.RemoveFile(path)
+					//fileutils.RemoveFile(path)
 				}
 			}
 		}
