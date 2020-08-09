@@ -63,10 +63,10 @@ func main() {
 			var compressedPath = t
 
 			if info.IsDir() {
-				directories = append(directories, path)
+				//directories = append(directories, path)
 				fileutils.MakeDirectory(t)
 			} else {
-				files = append(files, path)
+				//files = append(files, path)
 
 				// Get the content
 				contentType, err := fileutils.GetFileContentType(path)
