@@ -20,6 +20,9 @@ const (
 )
 
 func main() {
+
+	var ignore = false
+
 	argsWithoutProg := os.Args[1:]
 	if len(argsWithoutProg) != 1 {
 		fmt.Println("Usage: ./compressRecursively 'path/to/input/folder'")
@@ -107,7 +110,7 @@ func main() {
 						} else {
 							fmt.Println(path)
 							if isJPG || isPNG{
-
+								ignore = true
 							} else {
 								err := fileutils.CompressMP4(path, t)
 								if err != nil {
@@ -119,15 +122,23 @@ func main() {
 					}
 				}
 
-				exist := fileutils.FileExists(t)
-				if exist {
+				if ignore == false {
+					exist := fileutils.FileExists(t)
+					if exist {
+						successCounter++
+						err := bar.Add(1)
+						if err != nil {
+							panic(err)
+						}
+						fileutils.RemoveFile(path)
+						fileutils.WriteLog("compress " + t + " -> " + "OK")
+					}
+				} else {
 					successCounter++
 					err := bar.Add(1)
 					if err != nil {
 						panic(err)
 					}
-					fileutils.RemoveFile(path)
-					fileutils.WriteLog("compress " + t + " -> " + "OK")
 				}
 			}
 		}
