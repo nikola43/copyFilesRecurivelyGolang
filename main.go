@@ -97,16 +97,23 @@ func main() {
 
 					} else if contentType == "video/mp4" || contentType == "application/octet-stream" {
 						isCompressed := strings.Contains(path, "compress")
+						isJPG := strings.Contains(path, ".jpg")
+						isPNG := strings.Contains(path, ".png")
+
 						//fmt.Println(isCompressed) // true
 
 						if isCompressed {
 							fileutils.CopyFile(path, compressedPath)
 						} else {
 							fmt.Println(path)
-							err := fileutils.CompressMP4(path, t)
-							if err != nil {
-								//panic(err)
-								fileutils.WriteLog("compress video " + path +" -> "+ err.Error())
+							if isJPG || isPNG{
+
+							} else {
+								err := fileutils.CompressMP4(path, t)
+								if err != nil {
+									//panic(err)
+									fileutils.WriteLog("compress video " + path +" -> "+ err.Error())
+								}
 							}
 						}
 					}
