@@ -123,7 +123,7 @@ func WriteLog(message string) {
 		}
 	}
 
-	newLine := message + " | " + fmt.Sprintf(time.Now().Format("2006-01-02 15:04:05"))
+	newLine := fmt.Sprintf(time.Now().Format("2006-01-02 15:04:05")) + " | " +message
 
 	_, err = fmt.Fprintln(f, newLine)
 	if err != nil {
