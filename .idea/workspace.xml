@@ -21,6 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="34330a8a-1a0b-4685-8156-5cf1723e4625" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/copyFilesRecurivelyGolang" beforeDir="false" afterPath="$PROJECT_DIR$/copyFilesRecurivelyGolang" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,13 +58,14 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/utils" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/utils" />
     </key>
   </component>
   <component name="RunManager">
@@ -107,6 +109,7 @@
       <workItem from="1596296725609" duration="14000" />
       <workItem from="1596296753590" duration="6000" />
       <workItem from="1596460276746" duration="1846000" />
+      <workItem from="1596930358953" duration="704000" />
     </task>
     <servers />
   </component>

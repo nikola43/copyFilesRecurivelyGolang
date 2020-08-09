@@ -76,16 +76,16 @@ func main() {
 
 				//fmt.Println("Content Type: " + contentType)
 
-				if contentType == "image/jpeg" {
+				isAudio := strings.Contains(path, "mp3")
 
-					isCompressed := strings.Contains(path, "compress")
-					//fmt.Println(isCompressed) // true
+				if isAudio {
+					fileutils.CopyFile(path, t)
+				} else {
+					if contentType == "image/jpeg" {
 
-					isAudio := strings.Contains(path, "mp3")
+						isCompressed := strings.Contains(path, "compress")
+						//fmt.Println(isCompressed) // true
 
-					if isAudio {
-						fileutils.CopyFile(path, t)
-					} else {
 						if isCompressed {
 							fileutils.CopyFile(path, compressedPath)
 						} else {
@@ -94,23 +94,22 @@ func main() {
 								panic(err)
 							}
 						}
-					}
 
+					} else if contentType == "video/mp4" || contentType == "application/octet-stream" {
+						isCompressed := strings.Contains(path, "compress")
+						//fmt.Println(isCompressed) // true
 
-				} else if contentType == "video/mp4" || contentType == "application/octet-stream" {
-					isCompressed := strings.Contains(path, "compress")
-					//fmt.Println(isCompressed) // true
-
-					if isCompressed {
-						fileutils.CopyFile(path, compressedPath)
-					} else {
-						fmt.Println(path)
-						err := fileutils.CompressMP4(path, t)
-						if err != nil {
-							panic(err)
+						if isCompressed {
+							fileutils.CopyFile(path, compressedPath)
+						} else {
+							fmt.Println(path)
+							err := fileutils.CompressMP4(path, t)
+							if err != nil {
+								panic(err)
+							}
 						}
-					}
 
+					}
 				}
 
 				exist := fileutils.FileExists(t)
