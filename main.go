@@ -129,7 +129,7 @@ func main() {
 						successCounter++
 						err := bar.Add(1)
 						if err != nil {
-							panic(err)
+							panic(err.Error())
 						}
 						fileutils.RemoveFile(path)
 						fileutils.WriteLog("compress " + t + " -> " + "OK")
