@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	fileutils "github.com/nikola43/copyFilesRecurivelyGolang/utils"
-	"github.com/nikola43/ecodadys_api/utils"
 	"github.com/schollz/progressbar"
 	"os"
 	"path/filepath"
@@ -107,7 +106,7 @@ func main() {
 							err := fileutils.CompressMP4(path, t)
 							if err != nil {
 								//panic(err)
-								utils.WriteLog("compress video " + path +" -> "+ err.Error())
+								fileutils.WriteLog("compress video " + path +" -> "+ err.Error())
 							}
 						}
 					}
@@ -121,7 +120,7 @@ func main() {
 						panic(err)
 					}
 					fileutils.RemoveFile(path)
-					utils.WriteLog("compress " + t + " -> " + "OK")
+					fileutils.WriteLog("compress " + t + " -> " + "OK")
 				}
 			}
 		}
