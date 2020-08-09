@@ -81,7 +81,7 @@ func main() {
 				if isAudio {
 					fileutils.CopyFile(path, t)
 				} else {
-					if contentType == "image/jpeg" {
+					if contentType == "image/jpeg" || contentType == "image/png" {
 
 						isCompressed := strings.Contains(path, "compress")
 						//fmt.Println(isCompressed) // true
@@ -104,19 +104,6 @@ func main() {
 						} else {
 							fmt.Println(path)
 							err := fileutils.CompressMP4(path, t)
-							if err != nil {
-								panic(err)
-							}
-						}
-					} else if contentType == "image/png" {
-						isCompressed := strings.Contains(path, "compress")
-						//fmt.Println(isCompressed) // true
-
-						if isCompressed {
-							fileutils.CopyFile(path, compressedPath)
-						} else {
-							fmt.Println(path)
-							err := fileutils.CompressImage(path, t, 50)
 							if err != nil {
 								panic(err)
 							}
