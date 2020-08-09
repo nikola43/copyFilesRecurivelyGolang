@@ -51,7 +51,7 @@ func main() {
 
 	fileutils.FileExists(root)
 	//fileutils.RemoveDirectory(copyPath)
-	fileutils.MakeDirectory(copyPath)
+	//fileutils.MakeDirectory(copyPath)
 
 	// create and start new bar
 
