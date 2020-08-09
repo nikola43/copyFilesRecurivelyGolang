@@ -226,8 +226,8 @@ func MakeDirectory(dirPath string) bool {
 
 func CheckError(err error) bool {
 	if err != nil {
-		//fmt.Println(err)
-		log.Fatal(err.Error())
+		fmt.Println(err.Error())
+		//log.Fatal(err.Error())
 	}
 	return true
 }
