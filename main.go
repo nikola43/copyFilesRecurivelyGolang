@@ -111,6 +111,7 @@ func main() {
 							fmt.Println(path)
 							if isJPG || isPNG{
 								ignore = true
+								fileutils.CopyFile(path, t)
 							} else {
 								err := fileutils.CompressMP4(path, t)
 								if err != nil {
