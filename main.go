@@ -77,7 +77,7 @@ func main() {
 					panic(err)
 				}
 
-				//fmt.Println("Content Type: " + contentType)
+				fmt.Println("Content Type: " + contentType)
 
 				isAudio := strings.Contains(path, "mp3")
 
@@ -142,6 +142,7 @@ func main() {
 					}
 				}
 				ignore = false
+
 			}
 		}
 		return nil
